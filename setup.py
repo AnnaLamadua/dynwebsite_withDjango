@@ -17,6 +17,7 @@ setup(name='simplesite',
       include_package_data=True,
       install_requires=[
           'django>=1.9',
+          'pillow',
       ],
       zip_safe=False,
       author='mars0n',
