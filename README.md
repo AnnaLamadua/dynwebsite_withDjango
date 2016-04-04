@@ -71,21 +71,21 @@ The template ```simplesite/page_detail.html"``` is used like **generic template*
 ### Template Tags
 
 #### {% get_header_list %}
-*Assignment tag*
+
 Returns a QuerySet of Page objects  that belong to header.
 
 Ex:
 ``` {% get_header_list as header_object_list %} ```
 
 #### {% get_footer_list %}
-*Assignment tag*
+
 Returns a QuerySet of Page objects  that belong to footer.
 
 Ex:
 ``` {% get_footer_list as footer_object_list %} ```
 
 #### {% get_page %}
-*Assignment tag*
+
 Returns a page object filtered by the given kwargs.
 
 Ex:
