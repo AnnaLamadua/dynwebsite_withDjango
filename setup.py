@@ -2,7 +2,7 @@
 
 # Distributed under the MIT license, see LICENSE
 
-from setuptools import setup
+from setuptools import setup, find_packages
 import sys, os
 
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
@@ -13,7 +13,7 @@ setup(name='simplesite',
         Django app to create simple websites with a basic Page model which can 
         create generic relations with any other model to get its full queryset      
       """,
-      packages=['simplesite'],
+      packages=find_packages(),
       include_package_data=True,
       install_requires=[
           'django>=1.9',
