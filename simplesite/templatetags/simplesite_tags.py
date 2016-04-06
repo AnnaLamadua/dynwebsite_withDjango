@@ -1,7 +1,7 @@
 # *-* coding=utf-8 *-*
 from django import template
 
-from simplesite.models import Page
+from simplesite.models import Page, SocialNetwork
 
 
 register = template.Library()
@@ -30,3 +30,17 @@ def get_page(**kwargs):
     except:
         page = None
     return page
+
+@register.assignment_tag
+def get_all_social_networks():
+    """
+    Returns all SocialNetwork objects
+    """
+    return SocialNetwork.objects.all()
+
+@register.assignment_tag
+def get_active_social_networks():
+    """
+    Returns active SocialNetwork objects
+    """
+    return SocialNetwork.objects.filter(is_active=True)

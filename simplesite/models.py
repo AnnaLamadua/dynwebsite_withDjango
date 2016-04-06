@@ -19,17 +19,29 @@ def get_slugified_file_name(filename):
     del splitted_file_name
     return slugified_file_name
 
-def get_file_path(instance, filename):
+def get_page_image_path(instance, filename):
     """
-    Builds a path taking an instance and a file name. The object instance is 
-    used to get META attributes(for dynamic storage), and the filename is used
-    like a arg of other function to normalize names across application.
+    Builds a dynamic path for Page related images taking an PageImage instance 
+    and a file name. Returns a path like the next pattern:
+    /simplesite/page/PAGE_PK/slugified-path.ext
     """
-    return '{0}/{1}/{2}'.format(instance._meta.app_label,
-                                str(instance.page.pk),
-                                get_slugified_file_name(filename)
-                                )
+    return '{0}/{1}/{2}/{3}'.format(instance._meta.app_label,
+                                    str(instance.page._meta.model_name),
+                                    str(instance.page.pk),
+                                    get_slugified_file_name(filename)
+                                    )
 
+def get_socialnetwork_image_path(instance, filename):
+    """
+    Builds a dynamic path for SocialNetwork images. This method takes an
+    instance an builds the path like the next pattern:
+    /simplesite/socialnetwork/PAGE_SLUG/slugified-path.ext
+    """
+    return '{0}/{1}/{2}/{3}'.format(instance._meta.app_label,
+                                    str(instance._meta.model_name),
+                                    str(instance.slug),
+                                    get_slugified_file_name(filename)
+                                    )
 
 @python_2_unicode_compatible
 class Page(models.Model):
@@ -47,7 +59,6 @@ class Page(models.Model):
                                        related_name='_related_model', blank=True, null=True)
     is_header = models.BooleanField('Belongs to Header', default=False)
     is_footer = models.BooleanField('Belongs to Footer', default=False)
-
      
     class Meta:
         ordering = ['sort_order', 'slug', 'creation_date']
@@ -82,11 +93,11 @@ class Page(models.Model):
 @python_2_unicode_compatible
 class PageImage(models.Model):
     """
-    Image associated to the page 
+    Image associated to Page object. 
     """
     title =  models.CharField('Title', max_length=255)
     caption = models.CharField('Caption', max_length=255, blank=True, null=True)
-    image = models.ImageField(upload_to=get_file_path, max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to=get_page_image_path, max_length=255)
     page = models.ForeignKey(Page, related_name='image_set')
 
     class Meta:
@@ -95,3 +106,25 @@ class PageImage(models.Model):
 
     def __str__(self):
         return self.title 
+
+
+@python_2_unicode_compatible
+class SocialNetwork(models.Model):
+    """
+    SocialNetworks objects! 
+    """
+    title =  models.CharField('Title', max_length=255)
+    slug = models.SlugField('Slug', max_length=255, unique=True)
+    url = models.URLField('URL', max_length=255)
+    creation_date = models.DateTimeField('Creation Date', auto_now_add=True) 
+    sort_order = models.IntegerField('Sort Order', blank=True, null=True, default=1)
+    is_active = models.BooleanField('Active', default=True)
+    image = models.ImageField('Image', upload_to=get_socialnetwork_image_path, max_length=255)
+
+    class Meta:
+        ordering = ['sort_order', 'creation_date']
+        verbose_name = 'Social Network'
+        verbose_name_plural = 'Social Networks'
+
+    def __str__(self):
+        return self.slug 
