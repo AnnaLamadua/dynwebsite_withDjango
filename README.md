@@ -91,5 +91,19 @@ Returns a page object filtered by the given kwargs.
 Ex:
 ``` {% get_page [ slug='example' | sort_order=2 ] as ex_page %} ```
 
+#### {% get_all_social_networks %}
+
+Returns all SocialNetwork objects.
+
+Ex:
+``` {% get_all_social_networks as socials_object_list %} ```
+
+#### {% get_active_social_networks %}
+
+Returns active SocialNetwork objects.
+
+Ex:
+``` {% get_active_social_networks as socials_object_list %} ```
+
 ### Author
 [https://github.com/mars0n/](https://github.com/mars0n/)
