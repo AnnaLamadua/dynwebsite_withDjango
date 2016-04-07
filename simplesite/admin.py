@@ -70,4 +70,5 @@ class SocialNetworkAdmin(admin.ModelAdmin):
             'sort_order',
             )
     list_display_links = ('id', 'title',)
+    list_filter = ('is_active',)
     search_fields = ['title', 'pk']
