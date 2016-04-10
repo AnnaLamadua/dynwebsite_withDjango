@@ -1,5 +1,5 @@
 # -*- coding:utf8 -*-
-
+from django.http import Http404
 from django.shortcuts import render
 from django.views.generic import DetailView
 
@@ -13,6 +13,21 @@ class PageBaseDetailView(DetailView):
     """
     model = Page
 
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.is_staff:
+            return Page.objects.all()
+        return Page.objects.get_public_pages()
+
+    def get_object(self):
+        page_qs = self.get_queryset()
+        page_slug = self.kwargs.get('slug', None)
+        try:
+            page = page_qs.get(slug=page_slug)
+        except:
+            raise Http404()
+        return page
+
+
 class IndexDetailView(PageBaseDetailView):
     """
     Render the Home Page. the templates must have one of these names. 
@@ -24,6 +39,7 @@ class IndexDetailView(PageBaseDetailView):
                 "simplesite/index.html",
                 "simplesite/home.html",
                 ] 
+        
 
 class PageDetailView(PageBaseDetailView):
     """
