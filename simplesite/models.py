@@ -7,6 +7,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.text import slugify
 
+from simplesite.managers import PageManager
 
 def get_slugified_file_name(filename):
     """
@@ -57,8 +58,13 @@ class Page(models.Model):
     sort_order = models.IntegerField('Sort Order', blank=True, null=True, default=1)
     _related_model = models.ForeignKey(ContentType, verbose_name='Related Content',
                                        related_name='_related_model', blank=True, null=True)
+
+    is_public = models.BooleanField('Public', default=True)
     is_header = models.BooleanField('Belongs to Header', default=False)
     is_footer = models.BooleanField('Belongs to Footer', default=False)
+
+    ## MANAGER
+    objects = PageManager()
      
     class Meta:
         ordering = ['sort_order', 'slug', 'creation_date']

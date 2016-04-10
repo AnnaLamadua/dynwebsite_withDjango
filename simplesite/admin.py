@@ -26,7 +26,8 @@ class PageAdmin(admin.ModelAdmin):
                 'fields': [
                     'title',
                     'slug',
-                    ('sort_order', '_related_model' ,'is_header', 'is_footer',),
+                    ('sort_order', 'is_public', 'is_header', 'is_footer'),
+                    '_related_model',
                     'content',
                     ]
                 }),
@@ -42,6 +43,7 @@ class PageAdmin(admin.ModelAdmin):
             'last_modification',
             )
     list_display_links = ('id', 'title',)
+    list_filter = ('is_public',)
     search_fields = ['title', 'pk']
 
 
