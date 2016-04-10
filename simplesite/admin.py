@@ -39,6 +39,7 @@ class PageAdmin(admin.ModelAdmin):
             'id',
             'title',
             'slug',
+            'is_public',
             'sort_order',
             'last_modification',
             )
@@ -69,6 +70,7 @@ class SocialNetworkAdmin(admin.ModelAdmin):
             'id',
             'title',
             'slug',
+            'is_active',
             'sort_order',
             )
     list_display_links = ('id', 'title',)
