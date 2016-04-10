@@ -72,21 +72,21 @@ The template ```simplesite/page_detail.html"``` is used like **generic template*
 
 #### {% get_header_list %}
 
-Returns a QuerySet of Page objects  that belong to header.
+Returns a QuerySet of public Page objects  that belong to header.
 
 Ex:
 ``` {% get_header_list as header_object_list %} ```
 
 #### {% get_footer_list %}
 
-Returns a QuerySet of Page objects  that belong to footer.
+Returns a QuerySet of public Page objects that belong to footer.
 
 Ex:
 ``` {% get_footer_list as footer_object_list %} ```
 
 #### {% get_page %}
 
-Returns a page object filtered by the given kwargs.
+Returns a public page object filtered by the given kwargs.
 
 Ex:
 ``` {% get_page [ slug='example' | sort_order=2 ] as ex_page %} ```
