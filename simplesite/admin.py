@@ -44,7 +44,7 @@ class PageAdmin(admin.ModelAdmin):
             'last_modification',
             )
     list_display_links = ('id', 'title',)
-    list_filter = ('is_public',)
+    list_filter = ('is_public', 'creation_date', 'last_modification',)
     search_fields = ['title', 'pk']
 
 
