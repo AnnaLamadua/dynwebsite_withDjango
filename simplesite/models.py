@@ -67,7 +67,7 @@ class Page(models.Model):
     objects = PageManager()
      
     class Meta:
-        ordering = ['sort_order', 'slug', 'creation_date']
+        ordering = ['sort_order','creation_date', 'slug']
         verbose_name = 'Page'
         verbose_name_plural = 'Pages'
 

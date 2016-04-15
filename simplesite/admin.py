@@ -41,6 +41,8 @@ class PageAdmin(admin.ModelAdmin):
             'slug',
             'is_public',
             'sort_order',
+            'is_header',
+            'is_footer',
             'last_modification',
             )
     list_display_links = ('id', 'title',)
