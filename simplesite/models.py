@@ -101,8 +101,13 @@ class PageImage(models.Model):
     """
     Image associated to Page object. 
     """
+    IMG_TYPE_CHOICES = {
+            ('detail', 'Detail Image'),
+            ('thumbnail', 'Thumbnail Image'),
+            ('gallery', 'Gallery Image'),
+            }
     title =  models.CharField('Title', max_length=255)
-    caption = models.CharField('Caption', max_length=255, blank=True, null=True)
+    img_type =  models.CharField('Image Type', max_length=255, choices=IMG_TYPE_CHOICES, blank=True, null=True)
     image = models.ImageField(upload_to=get_page_image_path, max_length=255)
     page = models.ForeignKey(Page, related_name='image_set')
 
