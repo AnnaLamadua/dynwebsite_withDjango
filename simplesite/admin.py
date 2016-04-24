@@ -1,6 +1,5 @@
 # -*- coding:utf8 -*-
 
-from django import forms
 from django.contrib import admin
 
 from simplesite.models import (
