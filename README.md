@@ -105,5 +105,33 @@ Returns active SocialNetwork objects.
 Ex:
 ``` {% get_active_social_networks as socials_object_list %} ```
 
+#### {% detail_image %}
+Render the first DETAIL image of the Page. This is a Django ```simple_tag``` that builds a HTML image tag with the given image related to the Page and its title.  
+
+Ex:
+``` {% detail_image %} ```
+
+Returns ``` <img src="{{ IMG_PATH }}" alt="{{ IMG_TITLE }}"/>``` 
+
+#### {% thumbnail_image %}
+Render the first THUMBNAIL image of the Page. This is a Django ```simple_tag``` that builds a HTML image tag with the given image related to the Page and its title.  
+
+Ex:
+``` {% thumbnail_image %} ```
+
+Returns ``` <img src="{{ IMG_PATH }}" alt="{{ IMG_TITLE }}"/>``` 
+
+
+#### {% get_gallery_images %}
+Returns a list of img related objects selected as 'gallery'
+
+Ex:
+``` 
+{% get_gallery_images as gallery_imgs %}
+{% for img in gallery_img %}
+<img src="{{ img.image.url }}" alt="{{ img.title }}"/>
+{% endfor %}
+``` 
+
 ### Author
 [https://github.com/mars0n/](https://github.com/mars0n/)
