@@ -1,12 +1,14 @@
 # Simple Site
-
-*Django app to create and manage simple websites with a basic Page model which can create generic relations with any other model to get its full queryset*
+ ***SimpleSite*** *is a single Django app to create and manage dynamic websites. It's based on a base model* ***Page***  *which will be created to get a easy customization of your Site. The unique purpose of this app is to be connected with other models. Creating and connecting your custom models with Page instances, you ensure a full customization of your project and keeping the clean URLs this app brings to you.*
 
 
 ### Features
 
-**TO DOC**
-
+* Create any pages you want and connect each one with any other model via ContentType generic relationships.
+* Manage Site header & footer adding, removing or setting the representation order of each page.
+* Manage page status (Public & Draft) .
+* Set page images to be used like Thumbnail, Detail or Cover. 
+* Create and manage the link and the status of your social networks.
 
 ### Requirements
 
