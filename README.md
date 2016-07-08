@@ -21,14 +21,18 @@ It can be installed via pip running the next command.
 pip install git+http://github.com/mars0n/simple-site.git
 ```
 
-After installation, you must include it in your ```settings.py```. You can add it via the app config file, or the appname
+After installation, you must include it in your ```settings.py```. You can add it via the app config file, or the appname. In adition, you must include the WYSIWYG editor (Django Summernote)[https://github.com/summernote/django-summernote] dependency.
+
 ```
 INSTALLED_APPS = [
+    # WYSIWYG editor dependency
+    'django_summernote',
+
     ...
-    # Via config file
+    # SS config file
     'simplesite.apps.SimplesiteConfig',
     ...
-    # Via appname
+    # SS appname
     'simplesite',
 ]
 ```
@@ -36,6 +40,7 @@ Then add it in ```urls.py```:
 ```
 urlpatterns = [
     ...
+    url(r'^summernote/', include('django_summernote.urls')),
     url(r'', include('simplesite.urls')),
     ]
 ```

@@ -1,5 +1,7 @@
 # -*- coding:utf8 -*-
 
+from django_summernote.admin import SummernoteModelAdmin
+
 from django.contrib import admin
 
 from simplesite.models import (
@@ -16,7 +18,7 @@ class PageImageInline(admin.TabularInline):
 
 
 @admin.register(Page)
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(SummernoteModelAdmin):
     """
     Customizing Page Model representation in Django Admin
     """
@@ -50,7 +52,7 @@ class PageAdmin(admin.ModelAdmin):
 
 
 @admin.register(SocialNetwork)
-class SocialNetworkAdmin(admin.ModelAdmin):
+class SocialNetworkAdmin(SummernoteModelAdmin):
     """
     Customizing SocialNetwork representation in Django Admin
     """

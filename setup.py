@@ -18,6 +18,7 @@ setup(name='simplesite',
       install_requires=[
           'django>=1.9',
           'pillow',
+          'django-summernote',
       ],
       zip_safe=False,
       author='mars0n',
