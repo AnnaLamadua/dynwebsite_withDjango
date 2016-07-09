@@ -142,6 +142,7 @@ Ex:
 
 #### {% page_content %}
 Check if the given instance wrapped in the context is a Page one. Then parse the content of te page to HTML.
+
 Ex:
 ``` {% page_content %} ```
 
