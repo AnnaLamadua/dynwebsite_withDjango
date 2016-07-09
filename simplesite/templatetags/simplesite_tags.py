@@ -1,5 +1,6 @@
 # *-* coding=utf-8 *-*
 from django import template
+from django.utils.html import format_html
 
 from simplesite.commons.tagcommons import get_context_object, build_img_tag
 from simplesite.models import Page, SocialNetwork
@@ -82,3 +83,17 @@ def get_gallery_images(context):
         return obj.image_set.filter(img_type='gallery')
     except:
         return []
+
+@register.simple_tag(takes_context=True)
+def page_content(context):
+    """
+    Check if the given instance wrapped in the context is a Page one. Then 
+    parse the content of te page to HTML.
+    EX: {% page_content %}
+    """
+    try:
+        page = get_context_object(context)
+        if isinstance(page, Page):
+            return format_html(page.content)
+    except: 
+        return ''
