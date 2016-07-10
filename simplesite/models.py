@@ -63,6 +63,11 @@ class Page(models.Model):
     is_header = models.BooleanField('Belongs to Header', default=False)
     is_footer = models.BooleanField('Belongs to Footer', default=False)
 
+    ## PAGE SEO
+    seo_title = models.CharField('SEO Title', max_length=70, blank=True, null=True)
+    seo_description = models.CharField('SEO Meta Description', max_length=160, blank=True, null=True)
+    seo_keywords = models.CharField('SEO Meta Keywords', max_length=160, blank=True, null=True)
+
     ## MANAGER
     objects = PageManager()
      

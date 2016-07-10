@@ -23,6 +23,16 @@ class PageAdmin(SummernoteModelAdmin):
     Customizing Page Model representation in Django Admin
     """
     fieldsets = [
+            ('SEO', {
+            'fields': [
+                'seo_title',
+                'seo_description',
+                'seo_keywords',
+            ],
+            'classes': [
+                'collapse',
+                ]
+            }),
             (None, {
                 'fields': [
                     'title',
@@ -31,7 +41,7 @@ class PageAdmin(SummernoteModelAdmin):
                     '_related_model',
                     'content',
                     ]
-                }),
+                })
             ]
 
     prepopulated_fields = {'slug': ('title',)}
