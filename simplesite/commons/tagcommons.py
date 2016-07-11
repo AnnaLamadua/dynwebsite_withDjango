@@ -9,7 +9,8 @@ from django.utils.html import mark_safe
 
 def get_context_object(context):
     """
-    Try to return the object instance in the context
+    Try to return the object instance in the context. On Except, bubble the 
+    exeption to the call.
     """
     try:
         obj = context['object']

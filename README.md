@@ -148,5 +148,24 @@ Ex:
 
 Returns the same output than```{{ page.content|safe }}```
 
+#### {% seo_title %}
+Return the text to be putted on ```<title></title>``` tag. This tag will return the content of ```page.seo_title``` field. If this field is empty, this tag will return the generic title of the Page.
+
+Ex: 
+```{% seo_title %}```
+
+#### {% seo_description %}
+Return the text to be putted on ```<meta name="description">``` tag. This tag will return the content of ```page.seo_description``` field. If this field is empty, this tag will return the generic content of the Page with the HTML tags striped. If this value neither exists, returns the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` var set in proyect settings or a empty string.
+
+Ex: 
+```{% seo_description %}```
+
+#### {% seo_keywords %}
+Return the text to be putted on ```<meta name="keywords">``` tag. This tag will return the content of ```page.seo_keyword``` field. If this value doesn't exists, will return the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` set in proyect settings or a empty string.
+
+Ex:
+```{% seo_keywords %}```
+
+
 ### Author
 [Marsxn](http://marsxn.io/)
