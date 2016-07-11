@@ -9,10 +9,11 @@
 * Manage page status (Public & Draft) .
 * Set page images to be used like Thumbnail, Detail or Cover. 
 * Create and manage the link and the status of your social networks.
+* Manage the SEO basics of your website.
 
 ### Requirements
 
-Simple Site is developed and require Django>=1.9, pillow and Python > 2.7
+Simple Site is developed and require Django>=1.9, pillow, Python > 2.7 and django-summernote.
 
 ### How to install it
 
