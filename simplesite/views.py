@@ -35,6 +35,7 @@ class IndexDetailView(PageBaseDetailView):
 
     def get_template_names(self):
         return [
+                "simplesite/page_{0}.html".format(self.kwargs.get('slug')),
                 "simplesite/{0}_page.html".format(self.kwargs.get('slug')),
                 "simplesite/index.html",
                 "simplesite/home.html",
@@ -49,6 +50,7 @@ class PageDetailView(PageBaseDetailView):
 
     def get_template_names(self):
         return [
+                "simplesite/page_{0}.html".format(self.kwargs.get('slug')),
                 "simplesite/{0}_page.html".format(self.kwargs.get('slug')),
                 "simplesite/page_detail.html",
                 ] 
