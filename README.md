@@ -64,12 +64,14 @@ It's recommended to name the templates like next patterns, the views will look f
 
 **INDEX PAGE:**
 ```
+"simplesite/page_<page_slug>.html",
 "simplesite/<page_slug>_page.html",
 "simplesite/index.html",
 "simplesite/home.html",
 ```
 **PAGE DETAIL:**
 ```
+"simplesite/page_<page_slug>.html",
 "simplesite/<page_slug>_page.html",
 "simplesite/page_detail.html",
 ```
