@@ -19,7 +19,7 @@ Simple Site is developed and require Django>=1.9, pillow, Python > 2.7 and djang
 
 It can be installed via pip running the next command.
 ```
-pip install git+http://github.com/mars0n/simple-site.git
+pip install git+http://github.com/marsxn/simple-site.git
 ```
 
 After installation, you must include it in your ```settings.py```. You can add it via the app config file, or the appname. In adition, you must include the WYSIWYG editor [Django Summernote](https://github.com/summernote/django-summernote) dependency.
@@ -55,7 +55,7 @@ The the slug of Index Page *must be named* **'home'** to use the built-in `index
 
 |     View name   |URL              |
 |-----------------|-----------------|
-|`index_page`     |`/`              |
+|`home_page`      |`/`              |
 |`page_detail`    |`/<slug>/`       |
 
 ### Templates
@@ -152,19 +152,19 @@ Ex:
 Returns the same output than```{{ page.content|safe }}```
 
 #### {% seo_title %}
-Return the text to be putted on ```<title></title>``` tag. This tag will return the content of ```page.seo_title``` field. If this field is empty, this tag will return the generic title of the Page.
+Return the text to be rendered on ```<title></title>``` tag. This tag will return the content of ```page.seo_title``` field. If this field is empty, this tag will return the generic title of the Page.
 
 Ex: 
 ```{% seo_title %}```
 
 #### {% seo_description %}
-Return the text to be putted on ```<meta name="description">``` tag. This tag will return the content of ```page.seo_description``` field. If this field is empty, this tag will return the generic content of the Page with the HTML tags striped. If this value neither exists, returns the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` var set in proyect settings or a empty string.
+Return the text to be rendered on ```<meta name="description">``` tag. This tag will return the content of ```page.seo_description``` field. If this field is empty, this tag will return the generic content of the Page with the HTML tags striped. If this value neither exists, returns the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` var set in proyect settings or a empty string.
 
 Ex: 
 ```{% seo_description %}```
 
 #### {% seo_keywords %}
-Return the text to be putted on ```<meta name="keywords">``` tag. This tag will return the content of ```page.seo_keyword``` field. If this value doesn't exists, will return the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` set in proyect settings or a empty string.
+Return the text to be rendered on ```<meta name="keywords">``` tag. This tag will return the content of ```page.seo_keyword``` field. If this value doesn't exists, will return the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` set in proyect settings or a empty string.
 
 Ex:
 ```{% seo_keywords %}```
