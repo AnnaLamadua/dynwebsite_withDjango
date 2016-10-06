@@ -60,8 +60,6 @@ class Page(models.Model):
                                        related_name='_related_model', blank=True, null=True)
 
     is_public = models.BooleanField('Public', default=True)
-    is_header = models.BooleanField('Belongs to Header', default=False)
-    is_footer = models.BooleanField('Belongs to Footer', default=False)
 
     ## PAGE SEO
     seo_title = models.CharField('SEO Title', max_length=70, blank=True, null=True)

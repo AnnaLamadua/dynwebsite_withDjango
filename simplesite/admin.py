@@ -37,7 +37,7 @@ class PageAdmin(SummernoteModelAdmin):
                 'fields': [
                     'title',
                     'slug',
-                    ('sort_order', 'is_public', 'is_header', 'is_footer'),
+                    ('sort_order', 'is_public'),
                     '_related_model',
                     'content',
                     ]
@@ -52,8 +52,6 @@ class PageAdmin(SummernoteModelAdmin):
             'slug',
             'is_public',
             'sort_order',
-            'is_header',
-            'is_footer',
             'last_modification',
             )
     list_display_links = ('id', 'title',)

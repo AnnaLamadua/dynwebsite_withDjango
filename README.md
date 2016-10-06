@@ -5,7 +5,6 @@
 ### Features
 
 * Create any pages you want and connect each one with any other model via ContentType generic relationships.
-* Manage Site header & footer adding, removing or setting the representation order of each page.
 * Manage page status (Public & Draft) .
 * Set page images to be used like Thumbnail, Detail or Cover. 
 * Create and manage the link and the status of your social networks.
