@@ -80,19 +80,6 @@ The template ```simplesite/page_detail.html"``` is used like **generic template*
 
 ### Template Tags
 
-#### {% get_header_list %}
-
-Returns a QuerySet of public Page objects  that belong to header.
-
-Ex:
-``` {% get_header_list as header_object_list %} ```
-
-#### {% get_footer_list %}
-
-Returns a QuerySet of public Page objects that belong to footer.
-
-Ex:
-``` {% get_footer_list as footer_object_list %} ```
 
 #### {% get_page %}
 
@@ -101,19 +88,15 @@ Returns a public page object filtered by the given kwargs.
 Ex:
 ``` {% get_page [ slug='example' | sort_order=2 ] as ex_page %} ```
 
-#### {% get_all_social_networks %}
 
-Returns all SocialNetwork objects.
-
-Ex:
-``` {% get_all_social_networks as socials_object_list %} ```
-
-#### {% get_active_social_networks %}
-
-Returns active SocialNetwork objects.
+#### {% page_content %}
+Check if the given instance wrapped in the context is a Page one. Then parse the content of te page to HTML.
 
 Ex:
-``` {% get_active_social_networks as socials_object_list %} ```
+``` {% page_content %} ```
+
+Returns the same output than```{{ page.content|safe }}```
+
 
 #### {% detail_image %}
 Render the first DETAIL image of the Page. This is a Django ```simple_tag``` that builds a HTML image tag with the given image related to the Page and its title.  
@@ -122,6 +105,7 @@ Ex:
 ``` {% detail_image %} ```
 
 Returns ``` <img src="{{ IMG_PATH }}" alt="{{ IMG_TITLE }}"/>``` 
+
 
 #### {% thumbnail_image %}
 Render the first THUMBNAIL image of the Page. This is a Django ```simple_tag``` that builds a HTML image tag with the given image related to the Page and its title.  
@@ -143,13 +127,6 @@ Ex:
 {% endfor %}
 ``` 
 
-#### {% page_content %}
-Check if the given instance wrapped in the context is a Page one. Then parse the content of te page to HTML.
-
-Ex:
-``` {% page_content %} ```
-
-Returns the same output than```{{ page.content|safe }}```
 
 #### {% seo_title %}
 Return the text to be rendered on ```<title></title>``` tag. This tag will return the content of ```page.seo_title``` field. If this field is empty, this tag will return the generic title of the Page.
@@ -157,17 +134,36 @@ Return the text to be rendered on ```<title></title>``` tag. This tag will retur
 Ex: 
 ```{% seo_title %}```
 
+
 #### {% seo_description %}
 Return the text to be rendered on ```<meta name="description">``` tag. This tag will return the content of ```page.seo_description``` field. If this field is empty, this tag will return the generic content of the Page with the HTML tags striped. If this value neither exists, returns the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` var set in proyect settings or a empty string.
 
 Ex: 
 ```{% seo_description %}```
 
+
 #### {% seo_keywords %}
 Return the text to be rendered on ```<meta name="keywords">``` tag. This tag will return the content of ```page.seo_keyword``` field. If this value doesn't exists, will return the value of ```SIMPLESITE_DEFAULT_KEYWORDS``` set in proyect settings or a empty string.
 
 Ex:
 ```{% seo_keywords %}```
+
+
+### Social Media Template tags 
+
+#### {% get_all_social_networks %}
+
+Returns all SocialNetwork objects.
+
+Ex:
+``` {% get_all_social_networks as socials_object_list %} ```
+
+#### {% get_active_social_networks %}
+
+Returns active SocialNetwork objects.
+
+Ex:
+``` {% get_active_social_networks as socials_object_list %} ```
 
 
 ### Author

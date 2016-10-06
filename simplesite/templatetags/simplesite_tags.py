@@ -3,27 +3,16 @@ from django import template
 from django.conf import settings
 from django.utils.html import format_html, strip_tags
 
-from simplesite.commons.tagcommons import get_context_object, build_img_tag
 from simplesite.models import Page, SocialNetwork
+from simplesite.utils.tagutils import get_context_object, build_img_tag
 
-register = template.Library()
 
 DEFAULT_DESCRIPTON = getattr(settings, 'SIMPLESITE_SEO_DESCRIPTION', '').replace('\n', ' ')
 DEFAULT_KEYWORDS = getattr(settings, 'SIMPLESITE_SEO_KEYWORDS', '').replace('\n', ' ')
 
-@register.simple_tag
-def get_header_list():
-    """
-    Returns a list of public pages that belong to header
-    """
-    return Page.objects.get_public_pages().filter(is_header=True)
 
-@register.simple_tag
-def get_footer_list():
-    """
-    Returns a list of public pages that belong to header
-    """
-    return Page.objects.get_public_pages().filter(is_footer=True)
+register = template.Library()
+
 
 @register.simple_tag
 def get_page(**kwargs):
@@ -111,14 +100,9 @@ def seo_title(context):
 
     EX: {% seo_title %}
     """
-    seo_title = ''
     try:
         page = get_context_object(context)
-        if page.seo_title:
-            seo_title = page.seo_title
-        else:
-            seo_title = page.title
-        return seo_title
+        return page.seo_title or page.title
     except:
         return None
 
@@ -134,16 +118,9 @@ def seo_description(context):
 
     EX: {% seo_description %}
     """
-    seo_description = ''
     try:
         page = get_context_object(context)
-        if page.seo_description:
-            seo_description = page.seo_description
-        elif page.content:
-            seo_description = strip_tags(page.content)[:160]
-        else:
-            seo_description = DEFAULT_DESCRIPTON
-        return seo_description
+        return page.seo_description or strip_tags(page.content)[:160] or DEFAULT_DESCRIPTON
     except:
         return DEFAULT_DESCRIPTON
 
@@ -158,13 +135,8 @@ def seo_keywords(context):
 
     EX: {% seo_keywords %}
     """
-    seo_keywords = ''
     try:
-        page = get_context_object(context)
-        if page.seo_keywords:
-            seo_keywords = page.seo_keywords
-        else:
-            seo_keywords = DEFAULT_KEYWORDS
-        return seo_keywords
+        page = get_context_object(context) 
+        return page.seo_keywords or DEFAULT_KEYWORDS
     except:
         return DEFAULT_KEYWORDS
