@@ -16,7 +16,7 @@ setup(name='simplesite',
       packages=find_packages(),
       include_package_data=True,
       install_requires=[
-          'django>=1.9',
+          'django==1.9.8',
           'pillow',
           'django-summernote',
       ],
