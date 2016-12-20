@@ -1,6 +1,5 @@
 # -*- coding:utf8 -*-
 from django.http import Http404
-from django.shortcuts import render
 from django.views.generic import DetailView
 
 from simplesite.models import Page
@@ -8,7 +7,7 @@ from simplesite.models import Page
 
 class PageBaseDetailView(DetailView):
     """
-    Base View model specification. The remain views, will inherit from this 
+    Base View model specification. The remain views, will inherit from this
     across de application.
     """
     model = Page
@@ -30,17 +29,17 @@ class PageBaseDetailView(DetailView):
 
 class IndexDetailView(PageBaseDetailView):
     """
-    Render the Home Page. the templates must have one of these names. 
+    Render the Home Page. the templates must have one of these names.
     """
 
     def get_template_names(self):
         return [
-                "simplesite/page_{0}.html".format(self.kwargs.get('slug')),
-                "simplesite/{0}_page.html".format(self.kwargs.get('slug')),
-                "simplesite/index.html",
-                "simplesite/home.html",
-                ] 
-        
+            "simplesite/page_{0}.html".format(self.kwargs.get('slug')),
+            "simplesite/{0}_page.html".format(self.kwargs.get('slug')),
+            "simplesite/index.html",
+            "simplesite/home.html",
+        ]
+
 
 class PageDetailView(PageBaseDetailView):
     """
@@ -50,7 +49,7 @@ class PageDetailView(PageBaseDetailView):
 
     def get_template_names(self):
         return [
-                "simplesite/page_{0}.html".format(self.kwargs.get('slug')),
-                "simplesite/{0}_page.html".format(self.kwargs.get('slug')),
-                "simplesite/page_detail.html",
-                ] 
+            "simplesite/page_{0}.html".format(self.kwargs.get('slug')),
+            "simplesite/{0}_page.html".format(self.kwargs.get('slug')),
+            "simplesite/page_detail.html",
+        ]

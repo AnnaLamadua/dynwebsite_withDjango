@@ -25,6 +25,7 @@ def get_page(**kwargs):
         page = None
     return page
 
+
 @register.simple_tag
 def get_all_social_networks():
     """
@@ -32,12 +33,14 @@ def get_all_social_networks():
     """
     return SocialNetwork.objects.all()
 
+
 @register.simple_tag
 def get_active_social_networks():
     """
     Returns active SocialNetwork objects
     """
     return SocialNetwork.objects.filter(is_active=True)
+
 
 @register.simple_tag(takes_context=True)
 def detail_image(context):
@@ -52,6 +55,7 @@ def detail_image(context):
     except:
         return
 
+
 @register.simple_tag(takes_context=True)
 def thumbnail_image(context):
     """
@@ -65,6 +69,7 @@ def thumbnail_image(context):
     except:
         return
 
+
 @register.simple_tag(takes_context=True)
 def get_gallery_images(context):
     """
@@ -76,26 +81,28 @@ def get_gallery_images(context):
     except:
         return []
 
+
 @register.simple_tag(takes_context=True)
 def page_content(context):
     """
-    Check if the given instance wrapped in the context is a Page one. Then 
+    Check if the given instance wrapped in the context is a Page one. Then
     parse the content of te page to HTML.
-    
+
     EX: {% page_content %}
     """
     try:
         page = get_context_object(context)
         if isinstance(page, Page):
             return format_html(page.content)
-    except: 
+    except:
         return ''
+
 
 @register.simple_tag(takes_context=True)
 def seo_title(context):
     """
     Return the text to be putted on <title></title> tag. This tag will return
-    the content of seo_title field. If this field is empty, this tag will 
+    the content of seo_title field. If this field is empty, this tag will
     return the generic title of the Page.
 
     EX: {% seo_title %}
@@ -106,13 +113,14 @@ def seo_title(context):
     except:
         return None
 
+
 @register.simple_tag(takes_context=True)
 def seo_description(context):
     """
-    Return the text to be putted on <meta name="description"> tag. This tag 
+    Return the text to be putted on <meta name="description"> tag. This tag
     will return the content of seo_description field. If this field is empty,
     this tag will return the generic content of the Page with the HTML tags
-    striped. If this value neither exists, returns the 'DEFAULT_DESCRIPTION' 
+    striped. If this value neither exists, returns the 'DEFAULT_DESCRIPTION'
     value which will be taken from 'SIMPLESITE_DEFAULT_KEYWORDS' var set in
     proyect setting or a empty string.
 
@@ -124,10 +132,11 @@ def seo_description(context):
     except:
         return DEFAULT_DESCRIPTON
 
+
 @register.simple_tag(takes_context=True)
 def seo_keywords(context):
     """
-    Return the text to be putted on <meta name="keywords"> tag. This tag 
+    Return the text to be putted on <meta name="keywords"> tag. This tag
     will return the content of seo_keyword field. If this value doesn't
     exists, will return the 'DEFAULT_KEYWORDS' value which will be taken
     from 'SIMPLESITE_DEFAULT_KEYWORDS' set in proyect setting or a empty
@@ -136,7 +145,7 @@ def seo_keywords(context):
     EX: {% seo_keywords %}
     """
     try:
-        page = get_context_object(context) 
+        page = get_context_object(context)
         return page.seo_keywords or DEFAULT_KEYWORDS
     except:
         return DEFAULT_KEYWORDS

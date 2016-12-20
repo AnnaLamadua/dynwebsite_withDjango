@@ -7,9 +7,10 @@ A collection of functions to serve and keep template tags file clean.
 
 from django.utils.html import mark_safe
 
+
 def get_context_object(context):
     """
-    Try to return the object instance in the context. On Except, bubble the 
+    Try to return the object instance in the context. On Except, bubble the
     exeption to the call.
     """
     try:
@@ -17,6 +18,7 @@ def get_context_object(context):
         return obj
     except Exception:
         raise
+
 
 def build_img_tag(img):
     """

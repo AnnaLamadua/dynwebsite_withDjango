@@ -9,6 +9,7 @@ from django.utils.text import slugify
 
 from simplesite.managers import PageManager
 
+
 def get_slugified_file_name(filename):
     """
     Takes a filename string and slugify the file name and append its extension.
@@ -20,9 +21,10 @@ def get_slugified_file_name(filename):
     del splitted_file_name
     return slugified_file_name
 
+
 def get_page_image_path(instance, filename):
     """
-    Builds a dynamic path for Page related images taking an PageImage instance 
+    Builds a dynamic path for Page related images taking an PageImage instance
     and a file name. Returns a path like the next pattern:
     /simplesite/page/PAGE_PK/slugified-path.ext
     """
@@ -31,6 +33,7 @@ def get_page_image_path(instance, filename):
                                     str(instance.page.pk),
                                     get_slugified_file_name(filename)
                                     )
+
 
 def get_socialnetwork_image_path(instance, filename):
     """
@@ -44,15 +47,16 @@ def get_socialnetwork_image_path(instance, filename):
                                     get_slugified_file_name(filename)
                                     )
 
+
 @python_2_unicode_compatible
 class Page(models.Model):
     """
-    Base object to manage site. 
+    Base object to manage site.
     """
-    title =  models.CharField('Title', max_length=255)
+    title = models.CharField('Title', max_length=255)
     slug = models.SlugField('Slug', max_length=255, unique=True)
-    creation_date = models.DateTimeField('Creation Date', auto_now_add=True) 
-    last_modification = models.DateTimeField('Last Modification', auto_now=True) 
+    creation_date = models.DateTimeField('Creation Date', auto_now_add=True)
+    last_modification = models.DateTimeField('Last Modification', auto_now=True)
     content = models.TextField('Main Content', blank=True, null=True)
 
     sort_order = models.IntegerField('Sort Order', blank=True, null=True, default=1)
@@ -61,16 +65,16 @@ class Page(models.Model):
 
     is_public = models.BooleanField('Public', default=True)
 
-    ## PAGE SEO
+    # PAGE SEO
     seo_title = models.CharField('SEO Title', max_length=70, blank=True, null=True)
     seo_description = models.CharField('SEO Meta Description', max_length=160, blank=True, null=True)
     seo_keywords = models.CharField('SEO Meta Keywords', max_length=160, blank=True, null=True)
 
-    ## MANAGER
+    # MANAGER
     objects = PageManager()
-     
+
     class Meta:
-        ordering = ['sort_order','creation_date', 'slug']
+        ordering = ['sort_order', 'creation_date', 'slug']
         verbose_name = 'Page'
         verbose_name_plural = 'Pages'
 
@@ -86,7 +90,7 @@ class Page(models.Model):
     @property
     def related_objects(self):
         """
-        Returns a QuerySet of related objects gotten by '_related_objects' 
+        Returns a QuerySet of related objects gotten by '_related_objects'
         field.
 
         object.related_object
@@ -94,7 +98,7 @@ class Page(models.Model):
         """
         try:
             related_qs = self._related_model.get_all_objects_for_this_type()
-        except: 
+        except:
             return None
         return related_qs
 
@@ -102,15 +106,15 @@ class Page(models.Model):
 @python_2_unicode_compatible
 class PageImage(models.Model):
     """
-    Image associated to Page object. 
+    Image associated to Page object.
     """
     IMG_TYPE_CHOICES = {
-            ('detail', 'Detail Image'),
-            ('thumbnail', 'Thumbnail Image'),
-            ('gallery', 'Gallery Image'),
-            }
-    title =  models.CharField('Title', max_length=255)
-    img_type =  models.CharField('Image Type', max_length=255, choices=IMG_TYPE_CHOICES, blank=True, null=True)
+        ('detail', 'Detail Image'),
+        ('thumbnail', 'Thumbnail Image'),
+        ('gallery', 'Gallery Image'),
+    }
+    title = models.CharField('Title', max_length=255)
+    img_type = models.CharField('Image Type', max_length=255, choices=IMG_TYPE_CHOICES, blank=True, null=True)
     image = models.ImageField(upload_to=get_page_image_path, max_length=255)
     page = models.ForeignKey(Page, related_name='image_set')
 
@@ -119,18 +123,18 @@ class PageImage(models.Model):
         verbose_name_plural = 'Images'
 
     def __str__(self):
-        return self.title 
+        return self.title
 
 
 @python_2_unicode_compatible
 class SocialNetwork(models.Model):
     """
-    SocialNetworks objects! 
+    SocialNetworks objects!
     """
-    title =  models.CharField('Title', max_length=255)
+    title = models.CharField('Title', max_length=255)
     slug = models.SlugField('Slug', max_length=255, unique=True)
     url = models.URLField('URL', max_length=255)
-    creation_date = models.DateTimeField('Creation Date', auto_now_add=True) 
+    creation_date = models.DateTimeField('Creation Date', auto_now_add=True)
     sort_order = models.IntegerField('Sort Order', blank=True, null=True, default=1)
     is_active = models.BooleanField('Active', default=True)
     image = models.ImageField('Image', upload_to=get_socialnetwork_image_path, max_length=255)
@@ -141,4 +145,4 @@ class SocialNetwork(models.Model):
         verbose_name_plural = 'Social Networks'
 
     def __str__(self):
-        return self.slug 
+        return self.slug

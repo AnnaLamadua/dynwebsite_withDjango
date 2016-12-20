@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class PageManager(models.Manager):
     """
     Manager for Page objects.
