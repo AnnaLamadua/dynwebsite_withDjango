@@ -2,6 +2,7 @@
 from django import template
 from django.conf import settings
 from django.utils.html import format_html, strip_tags
+from django.utils.text import capfirst
 
 from simplesite.models import Page, SocialNetwork
 from simplesite.utils.tagutils import get_context_object, build_img_tag
@@ -94,6 +95,18 @@ def page_content(context):
         page = get_context_object(context)
         if isinstance(page, Page):
             return format_html(page.content)
+    except:
+        return ''
+
+
+@register.simple_tag(takes_context=True)
+def page_title(context):
+    """
+    Returns the title with capfirst filter applied.
+    """
+    try:
+        page = get_context_object(context)
+        return capfirst(page.title)
     except:
         return ''
 
