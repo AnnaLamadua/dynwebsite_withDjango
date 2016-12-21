@@ -53,7 +53,7 @@ def detail_image(context):
         img_tag = build_img_tag(img)
         return img_tag
     except:
-        return
+        return ''
 
 
 @register.simple_tag(takes_context=True)
@@ -67,7 +67,7 @@ def thumbnail_image(context):
         img_tag = build_img_tag(img)
         return img_tag
     except:
-        return
+        return ''
 
 
 @register.simple_tag(takes_context=True)
