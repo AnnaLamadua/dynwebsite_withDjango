@@ -37,6 +37,7 @@ class PageAdmin(SummernoteModelAdmin):
             'fields': [
                 'title',
                 'slug',
+                'alternative_url',
                 ('sort_order', 'is_public'),
                 '_related_model',
                 'content',

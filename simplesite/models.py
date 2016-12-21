@@ -58,6 +58,7 @@ class Page(models.Model):
     creation_date = models.DateTimeField('Creation Date', auto_now_add=True)
     last_modification = models.DateTimeField('Last Modification', auto_now=True)
     content = models.TextField('Main Content', blank=True, null=True)
+    alternative_url = models.CharField('Alternative URL', max_length=255, blank=True, null=True)
 
     sort_order = models.IntegerField('Sort Order', blank=True, null=True, default=1)
     _related_model = models.ForeignKey(ContentType, verbose_name='Related Content',
@@ -85,7 +86,7 @@ class Page(models.Model):
         return super(Page, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('simplesite:page_detail', kwargs={'slug': self.slug})
+        return self.alternative_url or reverse('simplesite:page_detail', kwargs={'slug': self.slug})
 
     @property
     def related_objects(self):
