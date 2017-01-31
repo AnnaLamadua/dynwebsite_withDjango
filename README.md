@@ -20,7 +20,7 @@ Simple Site is developed and require Django>=1.9, pillow, Python > 2.7 and djang
 
 It can be installed via pip running the next command.
 ```
-pip install git+http://github.com/marsxn/simple-site.git
+pip install git+http://github.com/marcopuccio/simple-site.git
 ```
 
 After installation, you must include it in your ```settings.py```. You can add it via the app config file, or the appname. In adition, you must include the WYSIWYG editor [Django Summernote](https://github.com/summernote/django-summernote) dependency.
@@ -167,4 +167,4 @@ Ex:```{% get_active_social_networks as socials_object_list %}```
 
 
 ### Author
-[Marsxn](http://marsxn.io/)
+[Marco Puccio](http://marsxn.io/)
