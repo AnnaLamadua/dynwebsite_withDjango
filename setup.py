@@ -22,7 +22,7 @@ setup(
         'django-summernote',
     ],
     zip_safe=False,
-    author='marsxn',
+    author='marcopuccio',
     url='https://github.com/marcopuccio/simple-site',
     classifiers=[
         'Enviroment :: Web Enviroment',
