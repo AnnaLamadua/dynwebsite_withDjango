@@ -23,7 +23,7 @@ setup(
     ],
     zip_safe=False,
     author='marsxn',
-    url='https://github.com/marsxn/simple-site',
+    url='https://github.com/marcopuccio/simple-site',
     classifiers=[
         'Enviroment :: Web Enviroment',
         'Framework :: Django',
